@@ -1,0 +1,178 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --font-sans: 'Sora', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Dark theme */
+  --bg-primary: #0a0a0f;
+  --bg-secondary: #0f0f1a;
+  --bg-card: #13131f;
+  --bg-card-hover: #181828;
+  --bg-elevated: #1a1a2e;
+  --border: rgba(139, 92, 246, 0.15);
+  --border-hover: rgba(139, 92, 246, 0.4);
+  --border-subtle: rgba(255,255,255,0.06);
+
+  --text-primary: #f0f0ff;
+  --text-secondary: #a0a0c0;
+  --text-muted: #606080;
+  --text-accent: #a78bfa;
+
+  --violet: #7c3aed;
+  --violet-bright: #8b5cf6;
+  --violet-glow: rgba(139, 92, 246, 0.25);
+  --violet-glow-strong: rgba(139, 92, 246, 0.45);
+  --violet-light: rgba(167, 139, 250, 0.12);
+
+  --pink: #ec4899;
+  --pink-glow: rgba(236, 72, 153, 0.2);
+
+  --score-high: #f97316;
+  --score-high-bg: rgba(249, 115, 22, 0.1);
+  --score-med: #a78bfa;
+  --score-med-bg: rgba(167, 139, 250, 0.1);
+  --score-low: #34d399;
+  --score-low-bg: rgba(52, 211, 153, 0.1);
+
+  --shadow-card: 0 4px 24px rgba(0,0,0,0.4), 0 1px 0 rgba(139,92,246,0.1);
+  --shadow-glow: 0 0 40px rgba(139,92,246,0.15), 0 4px 24px rgba(0,0,0,0.5);
+  --shadow-button: 0 0 20px rgba(139,92,246,0.35);
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="light"] {
+  --bg-primary: #f4f3ff;
+  --bg-secondary: #ede9fe;
+  --bg-card: #ffffff;
+  --bg-card-hover: #faf8ff;
+  --bg-elevated: #f0edff;
+  --border: rgba(109, 40, 217, 0.15);
+  --border-hover: rgba(109, 40, 217, 0.4);
+  --border-subtle: rgba(0,0,0,0.06);
+
+  --text-primary: #0f0a1e;
+  --text-secondary: #4c3a7a;
+  --text-muted: #8b7ab0;
+  --text-accent: #6d28d9;
+
+  --violet: #7c3aed;
+  --violet-bright: #6d28d9;
+  --violet-glow: rgba(109, 40, 217, 0.15);
+  --violet-glow-strong: rgba(109, 40, 217, 0.3);
+  --violet-light: rgba(109, 40, 217, 0.08);
+
+  --pink: #db2777;
+  --pink-glow: rgba(219, 39, 119, 0.12);
+
+  --score-high: #ea580c;
+  --score-high-bg: rgba(234, 88, 12, 0.08);
+  --score-med: #7c3aed;
+  --score-med-bg: rgba(124, 58, 237, 0.08);
+  --score-low: #059669;
+  --score-low-bg: rgba(5, 150, 105, 0.08);
+
+  --shadow-card: 0 4px 24px rgba(109,40,217,0.08), 0 1px 0 rgba(109,40,217,0.06);
+  --shadow-glow: 0 0 40px rgba(109,40,217,0.1), 0 4px 24px rgba(0,0,0,0.08);
+  --shadow-button: 0 0 20px rgba(109,40,217,0.25);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  transition: background var(--transition-slow), color var(--transition-slow);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--violet-bright); }
+
+/* Animations */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 var(--violet-glow-strong); }
+  70% { transform: scale(1); box-shadow: 0 0 0 12px transparent; }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 transparent; }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes progress-bar {
+  from { width: 0%; }
+  to { width: var(--target-width); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes dot-bounce {
+  0%, 80%, 100% { transform: scale(0.8); opacity: 0.5; }
+  40% { transform: scale(1.1); opacity: 1; }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s ease both;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease both;
+}
+
+/* Grid noise background */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(139,92,246,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139,92,246,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+[data-theme="light"] .grid-bg {
+  background-image:
+    linear-gradient(rgba(109,40,217,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(109,40,217,0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
