@@ -33,8 +33,31 @@ const ArrowLeftIcon = () => (
   </svg>
 )
 
-export default function Navbar({ onLogoClick, showBack, onBack }) {
+const NAV_ITEMS = [
+  { label: 'Home', sectionId: 'section-hero' },
+  { label: 'How it works', sectionId: 'section-how-it-works' },
+  { label: 'Features', sectionId: 'section-features' },
+]
+
+export default function Navbar({ onLogoClick, showBack, onBack, isLanding }) {
   const { theme, toggleTheme } = useTheme()
+
+  const handleNavClick = (sectionId) => {
+    if (!isLanding) {
+      // If not on landing page, go home first then scroll
+      onLogoClick()
+      // Defer scroll until after page transition renders
+      setTimeout(() => {
+        const el = document.getElementById(sectionId)
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }, 120)
+      return
+    }
+    const el = document.getElementById(sectionId)
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }
 
   return (
     <nav style={{
@@ -57,7 +80,8 @@ export default function Navbar({ onLogoClick, showBack, onBack }) {
         alignItems: 'center',
         justifyContent: 'space-between',
       }}>
-        {/* Left: back or logo */}
+
+        {/* Left: back button or logo */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
           {showBack && (
             <button
@@ -95,6 +119,7 @@ export default function Navbar({ onLogoClick, showBack, onBack }) {
               fontWeight: 700,
               fontSize: '15px',
               letterSpacing: '-0.02em',
+              padding: 0,
             }}
           >
             <div style={{
@@ -109,16 +134,16 @@ export default function Navbar({ onLogoClick, showBack, onBack }) {
             }}>
               <StarIcon />
             </div>
-            ResearchGap
+            FoundersQuantum
           </button>
         </div>
 
-        {/* Center nav */}
+        {/* Center: nav links */}
         <div style={{ display: 'flex', gap: '32px', alignItems: 'center' }}>
-          {['Home', 'How it works', 'Features'].map(item => (
+          {NAV_ITEMS.map(item => (
             <button
-              key={item}
-              onClick={item === 'Home' ? onLogoClick : undefined}
+              key={item.label}
+              onClick={() => handleNavClick(item.sectionId)}
               style={{
                 background: 'none',
                 border: 'none',
@@ -130,16 +155,16 @@ export default function Navbar({ onLogoClick, showBack, onBack }) {
                 transition: 'color var(--transition)',
                 padding: 0,
               }}
-              onMouseEnter={e => e.target.style.color = 'var(--text-primary)'}
-              onMouseLeave={e => e.target.style.color = 'var(--text-secondary)'}
+              onMouseEnter={e => e.currentTarget.style.color = 'var(--text-primary)'}
+              onMouseLeave={e => e.currentTarget.style.color = 'var(--text-secondary)'}
             >
-              {item}
+              {item.label}
             </button>
           ))}
         </div>
 
-        {/* Right: theme toggle + CTA */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+        {/* Right: theme toggle only — Try demo removed */}
+        <div style={{ display: 'flex', alignItems: 'center' }}>
           <button
             onClick={toggleTheme}
             style={{
@@ -156,28 +181,19 @@ export default function Navbar({ onLogoClick, showBack, onBack }) {
               transition: 'all var(--transition)',
             }}
             title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+            onMouseEnter={e => {
+              e.currentTarget.style.borderColor = 'var(--border-hover)'
+              e.currentTarget.style.background = 'var(--violet-glow)'
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.borderColor = 'var(--border)'
+              e.currentTarget.style.background = 'var(--violet-light)'
+            }}
           >
             {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
           </button>
-          <button
-            style={{
-              padding: '8px 18px',
-              borderRadius: 'var(--radius-sm)',
-              background: 'linear-gradient(135deg, var(--violet) 0%, #a855f7 100%)',
-              border: 'none',
-              color: '#fff',
-              fontFamily: 'var(--font-sans)',
-              fontWeight: 600,
-              fontSize: '13px',
-              cursor: 'pointer',
-              boxShadow: 'var(--shadow-button)',
-              transition: 'all var(--transition)',
-              letterSpacing: '0.01em',
-            }}
-          >
-            Try demo
-          </button>
         </div>
+
       </div>
     </nav>
   )

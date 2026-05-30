@@ -1,26 +1,36 @@
 import SearchBar from '../components/SearchBar.jsx'
 
-const CheckIcon = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-    <polyline points="20 6 9 17 4 12"/>
-  </svg>
-)
-
 const HOW_IT_WORKS = [
   {
-    icon: '🔬',
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        <line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/>
+      </svg>
+    ),
+    iconBg: 'linear-gradient(135deg, #3730a3 0%, #4f46e5 100%)',
     step: '1.',
     title: 'Crawl recent research',
     desc: 'Continuously index arXiv, bioRxiv, OpenReview and top conferences for breakthroughs in your domain.',
   },
   {
-    icon: '📡',
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+      </svg>
+    ),
+    iconBg: 'linear-gradient(135deg, #5b21b6 0%, #7c3aed 100%)',
     step: '2.',
     title: 'Map commercial signal',
     desc: 'Cross-reference GitHub repos, Product Hunt launches and funding to find what no one is shipping.',
   },
   {
-    icon: '✨',
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+      </svg>
+    ),
+    iconBg: 'linear-gradient(135deg, #7c3aed 0%, #a855f7 100%)',
     step: '3.',
     title: 'Generate scored opportunities',
     desc: 'Get pitchable startup ideas with gap, novelty, and market readiness scores you can defend.',
@@ -29,36 +39,59 @@ const HOW_IT_WORKS = [
 
 const FEATURES = [
   {
-    icon: '🎯',
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/>
+        <line x1="6" y1="20" x2="6" y2="14"/>
+      </svg>
+    ),
+    iconBg: 'linear-gradient(135deg, #1e3a5f 0%, #1d4ed8 100%)',
     title: 'Gap score, not vibes',
     desc: 'Every opportunity ships with a defensible score across novelty, gap, and market readiness.',
   },
   {
-    icon: '🏭',
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="10"/>
+        <line x1="2" y1="12" x2="22" y2="12"/>
+        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+      </svg>
+    ),
+    iconBg: 'linear-gradient(135deg, #4a1d96 0%, #7c3aed 100%)',
     title: 'Commercial landscape baked in',
     desc: 'See exactly which incumbents are adjacent — and where the white space lives.',
   },
   {
-    icon: '🛠️',
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+      </svg>
+    ),
+    iconBg: 'linear-gradient(135deg, #831843 0%, #db2777 100%)',
     title: 'Built for builders',
     desc: 'Each card unfolds into pitches, monetization models, and the source paper you can cite to investors.',
   },
 ]
-
 export default function LandingPage({ onSearch }) {
   return (
     <div style={{ position: 'relative', overflow: 'hidden' }}>
-      {/* Hero section */}
-      <section className="grid-bg" style={{
-        minHeight: 'calc(100vh - 60px)',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '80px 24px 60px',
-        position: 'relative',
-      }}>
-        {/* Radial glow */}
+
+      {/* ── HERO SECTION ─────────────────────────────────────────────────── */}
+      <section
+        id="section-hero"
+        className="grid-bg"
+        style={{
+          minHeight: 'calc(100vh - 60px)',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '80px 24px 60px',
+          position: 'relative',
+          scrollMarginTop: '60px',
+        }}
+      >
+        {/* Radial glows */}
         <div style={{
           position: 'absolute',
           top: '20%',
@@ -79,7 +112,7 @@ export default function LandingPage({ onSearch }) {
           pointerEvents: 'none',
         }} />
 
-        {/* Papers count badge */}
+        {/* Live badge */}
         <div style={{
           display: 'inline-flex',
           alignItems: 'center',
@@ -95,7 +128,13 @@ export default function LandingPage({ onSearch }) {
           animation: 'fadeInUp 0.5s ease',
           fontFamily: 'var(--font-mono)',
         }}>
-          <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#34d399', animation: 'glow-pulse 2s infinite' }} />
+          <span style={{
+            width: '6px',
+            height: '6px',
+            borderRadius: '50%',
+            background: '#34d399',
+            animation: 'glow-pulse 2s infinite',
+          }} />
           Indexing 142,000+ papers from this week
         </div>
 
@@ -112,7 +151,7 @@ export default function LandingPage({ onSearch }) {
           margin: '0 auto 16px',
           animation: 'fadeInUp 0.5s ease 0.1s both',
         }}>
-          Find what research solved
+          Find research that's 
           <br />
           <span style={{
             background: 'linear-gradient(135deg, var(--violet-bright) 0%, var(--pink) 100%)',
@@ -120,11 +159,11 @@ export default function LandingPage({ onSearch }) {
             WebkitTextFillColor: 'transparent',
             backgroundClip: 'text',
           }}>
-            that no product built.
+            ready to be built
           </span>
         </h1>
 
-        {/* Sub */}
+        {/* Subheadline */}
         <p style={{
           color: 'var(--text-secondary)',
           fontSize: '16px',
@@ -134,7 +173,7 @@ export default function LandingPage({ onSearch }) {
           margin: '0 auto 40px',
           animation: 'fadeInUp 0.5s ease 0.2s both',
         }}>
-          ResearchGap scans recent papers, GitHub and Product Hunt to surface startup opportunities where the science is ready and the market isn't.
+          FoundersQuantum scans recent papers, GitHub and Product Hunt to surface startup opportunities where the science is ready and the market isn't.
         </p>
 
         {/* Search */}
@@ -143,10 +182,26 @@ export default function LandingPage({ onSearch }) {
         </div>
       </section>
 
-      {/* How it works */}
-      <section style={{ padding: '80px 24px', maxWidth: '1100px', margin: '0 auto' }}>
+      {/* ── HOW IT WORKS SECTION ─────────────────────────────────────────── */}
+      <section
+        id="section-how-it-works"
+        style={{
+          padding: '80px 24px 40px',
+          maxWidth: '1100px',
+          margin: '0 auto',
+          scrollMarginTop: '60px',
+        }}
+      >
         <div style={{ textAlign: 'center', marginBottom: '48px' }}>
-          <p style={{ color: 'var(--text-accent)', fontSize: '11px', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', fontFamily: 'var(--font-mono)', marginBottom: '10px' }}>
+          <p style={{
+            color: 'var(--text-accent)',
+            fontSize: '11px',
+            fontWeight: 700,
+            letterSpacing: '0.15em',
+            textTransform: 'uppercase',
+            fontFamily: 'var(--font-mono)',
+            marginBottom: '10px',
+          }}>
             HOW IT WORKS
           </p>
           <h2 style={{
@@ -159,25 +214,81 @@ export default function LandingPage({ onSearch }) {
           }}>
             From paper to pitch in seconds
           </h2>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '15px', maxWidth: '480px', margin: '0 auto' }}>
+          <p style={{
+            color: 'var(--text-secondary)',
+            fontSize: '15px',
+            maxWidth: '480px',
+            margin: '0 auto',
+          }}>
             A live pipeline that crawls research, weighs commercial signal, and writes the opportunity.
           </p>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px', marginBottom: '16px' }}>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+          gap: '16px',
+        }}>
           {HOW_IT_WORKS.map((item, i) => (
             <FeatureCard key={i} {...item} variant="primary" delay={i * 80} />
           ))}
         </div>
+      </section>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px' }}>
+      {/* ── FEATURES SECTION ─────────────────────────────────────────────── */}
+      <section
+        id="section-features"
+        style={{
+          padding: '40px 24px 80px',
+          maxWidth: '1100px',
+          margin: '0 auto',
+          scrollMarginTop: '60px',
+        }}
+      >
+        <div style={{ textAlign: 'center', marginBottom: '48px' }}>
+          <p style={{
+            color: 'var(--text-accent)',
+            fontSize: '11px',
+            fontWeight: 700,
+            letterSpacing: '0.15em',
+            textTransform: 'uppercase',
+            fontFamily: 'var(--font-mono)',
+            marginBottom: '10px',
+          }}>
+            FEATURES
+          </p>
+          <h2 style={{
+            fontFamily: 'var(--font-sans)',
+            fontSize: 'clamp(28px, 4vw, 40px)',
+            fontWeight: 700,
+            letterSpacing: '-0.03em',
+            color: 'var(--text-primary)',
+            margin: '0 0 12px',
+          }}>
+            Built for serious builders
+          </h2>
+          <p style={{
+            color: 'var(--text-secondary)',
+            fontSize: '15px',
+            maxWidth: '480px',
+            margin: '0 auto',
+          }}>
+            Every feature is designed to get you from research to investor-ready pitch as fast as possible.
+          </p>
+        </div>
+
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+          gap: '16px',
+        }}>
           {FEATURES.map((item, i) => (
-            <FeatureCard key={i} {...item} variant="secondary" delay={i * 80 + 240} />
+            <FeatureCard key={i} {...item} variant="secondary" delay={i * 80} />
           ))}
         </div>
       </section>
 
-      {/* CTA Banner */}
+      {/* ── CTA BANNER ───────────────────────────────────────────────────── */}
       <section style={{ padding: '0 24px 80px', maxWidth: '1100px', margin: '0 auto' }}>
         <div style={{
           borderRadius: 'var(--radius-xl)',
@@ -212,7 +323,11 @@ export default function LandingPage({ onSearch }) {
             Find it before anyone else does.
           </p>
           <button
-            onClick={() => document.querySelector('input')?.focus()}
+            onClick={() => {
+              const el = document.getElementById('section-hero')
+              if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+              setTimeout(() => document.querySelector('input')?.focus(), 500)
+            }}
             style={{
               display: 'inline-flex',
               alignItems: 'center',
@@ -235,7 +350,7 @@ export default function LandingPage({ onSearch }) {
         </div>
       </section>
 
-      {/* Footer */}
+      {/* ── FOOTER ───────────────────────────────────────────────────────── */}
       <footer style={{
         borderTop: '1px solid var(--border-subtle)',
         padding: '20px 24px',
@@ -245,30 +360,40 @@ export default function LandingPage({ onSearch }) {
         maxWidth: '1200px',
         margin: '0 auto',
       }}>
-        <span style={{ color: 'var(--text-muted)', fontSize: '12px' }}>© 2026 ResearchGap. All breakthroughs reserved.</span>
-        <span style={{ color: 'var(--text-muted)', fontSize: '12px', fontStyle: 'italic' }}>Built for builders who read papers.</span>
+        <span style={{ color: 'var(--text-muted)', fontSize: '12px' }}>
+          © 2026 FoundersQuantum. All breakthroughs reserved.
+        </span>
+        <span style={{ color: 'var(--text-muted)', fontSize: '12px', fontStyle: 'italic' }}>
+          Built for builders who read papers.
+        </span>
       </footer>
 
       <style>{`
-        @keyframes glow-pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
+        @keyframes glow-pulse {
+          0%, 100% { opacity: 0.4; }
+          50% { opacity: 1; }
+        }
       `}</style>
     </div>
   )
 }
 
-function FeatureCard({ icon, step, title, desc, variant, delay }) {
+function FeatureCard({ icon, iconBg, step, title, desc, delay }) {
   return (
-    <div style={{
-      background: 'var(--bg-card)',
-      border: '1px solid var(--border)',
-      borderRadius: 'var(--radius-lg)',
-      padding: '24px',
-      transition: 'all var(--transition)',
-      animation: `fadeInUp 0.5s ease ${delay}ms both`,
-    }}
+    <div
+      style={{
+        background: 'var(--bg-card)',
+        border: '1px solid var(--border)',
+        borderRadius: 'var(--radius-lg)',
+        padding: '28px',
+        transition: 'all var(--transition)',
+        animation: `fadeInUp 0.5s ease ${delay}ms both`,
+        position: 'relative',
+        overflow: 'hidden',
+      }}
       onMouseEnter={e => {
         e.currentTarget.style.borderColor = 'var(--border-hover)'
-        e.currentTarget.style.transform = 'translateY(-2px)'
+        e.currentTarget.style.transform = 'translateY(-3px)'
         e.currentTarget.style.boxShadow = 'var(--shadow-glow)'
       }}
       onMouseLeave={e => {
@@ -277,29 +402,58 @@ function FeatureCard({ icon, step, title, desc, variant, delay }) {
         e.currentTarget.style.boxShadow = 'none'
       }}
     >
+      {/* Subtle top line accent */}
       <div style={{
-        width: '36px',
-        height: '36px',
-        borderRadius: 'var(--radius-sm)',
-        background: 'var(--violet-light)',
-        border: '1px solid var(--border)',
+        position: 'absolute',
+        top: 0, left: 0, right: 0,
+        height: '1px',
+        background: 'linear-gradient(90deg, transparent, var(--violet-bright)33, transparent)',
+      }} />
+
+      {/* Icon box */}
+      <div style={{
+        width: '44px',
+        height: '44px',
+        borderRadius: '12px',
+        background: iconBg,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        fontSize: '18px',
-        marginBottom: '16px',
+        marginBottom: '20px',
+        color: '#fff',
+        boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
+        flexShrink: 0,
       }}>
         {icon}
       </div>
+
       {step && (
-        <p style={{ color: 'var(--text-accent)', fontSize: '11px', fontWeight: 700, letterSpacing: '0.05em', marginBottom: '4px', fontFamily: 'var(--font-mono)' }}>
+        <p style={{
+          color: 'var(--text-accent)',
+          fontSize: '11px',
+          fontWeight: 700,
+          letterSpacing: '0.06em',
+          marginBottom: '6px',
+          fontFamily: 'var(--font-mono)',
+        }}>
           {step}
         </p>
       )}
-      <h3 style={{ color: 'var(--text-primary)', fontSize: '14px', fontWeight: 700, margin: '0 0 8px', letterSpacing: '-0.01em' }}>
+      <h3 style={{
+        color: 'var(--text-primary)',
+        fontSize: '15px',
+        fontWeight: 700,
+        margin: '0 0 10px',
+        letterSpacing: '-0.02em',
+      }}>
         {title}
       </h3>
-      <p style={{ color: 'var(--text-secondary)', fontSize: '13px', lineHeight: 1.6, margin: 0 }}>
+      <p style={{
+        color: 'var(--text-secondary)',
+        fontSize: '13px',
+        lineHeight: 1.65,
+        margin: 0,
+      }}>
         {desc}
       </p>
     </div>

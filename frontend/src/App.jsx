@@ -15,7 +15,6 @@ export default function App() {
   const [searchError, setSearchError] = useState(null)
   const apiDoneRef = useRef(false)
   const animDoneRef = useRef(false)
-  const pendingTransitionRef = useRef(false)
 
   const tryTransitionToResults = () => {
     if (apiDoneRef.current && animDoneRef.current) {
@@ -31,7 +30,6 @@ export default function App() {
     animDoneRef.current = false
     setPage('loading')
 
-    // Fire API call immediately while animation plays
     runSearch(q)
       .then(result => {
         setSearchResult(result)
@@ -55,6 +53,15 @@ export default function App() {
     setPage('opportunity')
   }
 
+  const handleLogoClick = () => {
+    setPage('landing')
+    setQuery('')
+    setSearchResult(null)
+    setSearchError(null)
+    // Scroll to top when logo clicked
+    setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 50)
+  }
+
   const handleSearchAgain = () => {
     setPage('landing')
     setQuery('')
@@ -66,9 +73,10 @@ export default function App() {
     <ThemeProvider>
       <div style={{ minHeight: '100vh', background: 'var(--bg-primary)', transition: 'background 0.4s' }}>
         <Navbar
-          onLogoClick={() => setPage('landing')}
+          onLogoClick={handleLogoClick}
           showBack={page === 'opportunity'}
           onBack={() => setPage('results')}
+          isLanding={page === 'landing'}
         />
         {page === 'landing' && (
           <LandingPage onSearch={handleSearch} />
